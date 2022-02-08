@@ -1,17 +1,30 @@
 function hasTargetSum(array, target) {
-  // Write your algorithm here
+  for (let i = 0; i < array.length-1; i++) {
+    const element = array[i];
+    for (let j = i+1; j < array.length; j++) {
+      const element2 = array[j];
+      if(element + element2 == target) return true;
+    }
+  }
+  return false;
 }
 
 /* 
-  Write the Big O time complexity of your function here
+  Runtime: O(n^2)
+  Space: O(n)
 */
 
 /* 
-  Add your pseudocode here
+  iterate over the array 
+  add the rest of the array to the current number
+  if the 2 numbers add up to target return true
 */
 
 /*
-  Add written explanation of your solution here
+  I used 2 for loops. The first will keep adding to the second until it
+  has tried all of the number in the array, then the first number will iterate
+  to the next number. If it finds that these 2 numbers add up to the target
+  it will return true. If the for loops complete it will return false.
 */
 
 // You can run `node index.js` to view these console logs
@@ -29,6 +42,16 @@ if (require.main === module) {
 
   console.log("Expecting: false");
   console.log("=>", hasTargetSum([1, 2, 5], 4));
+
+  console.log("");
+
+  console.log("Expecting: true");
+  console.log("=>", hasTargetSum([1,6,12,43,7,9], 16));
+
+  console.log("");
+
+  console.log("Expecting: false");
+  console.log("=>", hasTargetSum([1,6,12,43,7,9], 100));
 }
 
 module.exports = hasTargetSum;
